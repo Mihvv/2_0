@@ -28,7 +28,7 @@
           html += "</ul>";
           answer.innerHTML = html;
         })
-    }, 1000)
+    }, 750)
   })
 
   cw2.addEventListener("click", function() {
@@ -43,7 +43,25 @@
   })
 
   cw3.addEventListener("click", function() {
-    //TODO
+    answer.textContent = "Processing…"
+
+    const newPost = {
+      title: 'Przykladowy tytul',
+      body: 'Przykladowa tresc',
+      userId: 1
+    };
+
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newPost)
+    })
+      .then(response => response.json())
+      .then(data => {
+        answer.textContent = `Dodano nowy post o ID = ${data.id}`;
+      })
   })
 
 })();
