@@ -32,7 +32,14 @@
   })
 
   cw2.addEventListener("click", function() {
-    //TODO
+    fetch('https://jsonplaceholder.typicode.com/posts/1')
+      .then(response => response.json())
+      .then(post => {
+        let html = '<h3>';
+        html += `${post.title}<p>${post.body}</p>`;
+        html += '</h3>';
+        answer.innerHTML = html;
+      })
   })
 
   cw3.addEventListener("click", function() {
